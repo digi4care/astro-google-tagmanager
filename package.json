@@ -1,0 +1,51 @@
+{
+  "name": "@digi4care/astro-google-tagmanager",
+  "version": "1.0.0",
+  "description": "A seamless integration for injecting Google Tag Manager snippets into Astro projects, supporting popular web analytics tools.",
+  "homepage": "https://github.com/digi4care/astro-google-tagmanager",
+  "bugs": {
+    "url": "https://github.com/digi4care/astro-google-tagmanager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digi4care/astro-google-tagmanager.git"
+  },
+  "author": {
+    "name": "digi4care",
+    "email": "contact@digi4care.nl",
+    "url": "https://github.com/digi4care"
+  },
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "src",
+    "index.ts"
+  ],
+  "keywords": [
+    "astro-component",
+    "astro",
+    "analytics",
+    "tagmanager",
+    "google-tagmanager",
+    "gtm",
+    "astro-integration",
+    "web-analytics",
+    "SEO",
+    "website-tracking",
+    "web-analytics-integration"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "astro": "^1.2.1 || ^2.0.0 || ^3.0.0-beta.0 || ^3.0.0 || ^4.0.0",
+    "typescript": "^4.0.0"
+  },
+  "peerDependencies": {
+    "astro": "^1.2.1 || ^2.0.0 || ^3.0.0-beta.0 || ^3.0.0 || ^4.0.0"
+  }
+}
