@@ -2,4 +2,5 @@
 // Then, use this file to export everything you want your user to access.
 
 export { default as GoogleTagmanager } from './src/GoogleTagmanager.astro';
+export { default as GoogleTagmanagerPartytown } from './src/GoogleTagmanagerPartytown.astro';
 export { default as GoogleTagmanagerNoscript } from './src/GoogleTagmanagerNoscript.astro';

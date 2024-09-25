@@ -1,0 +1,23 @@
+---
+// component: src/components/common/GoogleTagmanagerPartytown.astro
+export interface Props {
+  id: string;
+}
+
+const { id = "GTM_MEASUREMENT_ID" } = Astro.props;
+
+const gtmScript = `
+  <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>
+  <script type="text/partytown">
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '${id}');
+  </script>
+`;
+---
+
+<!-- Global site tag - Google Tagmanager -->
+<Fragment set:html={`${gtmScript}`} />
+<!-- Einde Global site tag - Google Tagmanager -->

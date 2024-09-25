@@ -2,40 +2,25 @@
 // component: src/components/common/GoogleTagmanager.astro
 export interface Props {
   id: string;
-  partytown?: boolean;
   domain?: string;
   container?: string;
 }
 
 const {
   id = "GTM_MEASUREMENT_ID",
-  partytown = false,
   domain = "https://www.googletagmanager.com",
   container = "gtm.js",
 } = Astro.props;
 
-const attrs = partytown ? { type: "text/partytown" } : {};
-const _attrs = partytown ? ' type="text/partytown"' : "";
-
-const gtmScript = `
+const gtmScript = `<script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    new Date().getTime(),event:'${container}'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     '${domain}/${container}?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','${id}');
+    })(window,document,'script','dataLayer','${id}');</script>
 `;
 ---
 
-<!-- Global site tag - Google Tagmanager -->{
-  id && (
-    <script
-      is:inline
-      async
-      src={`${domain}/${container}?id=${id}`}
-      {...attrs}
-    />
-  )
-}
-
-<Fragment set:html={`<script${_attrs}>${gtmScript}</script>`} />
+<!-- Global site tag - Google Tagmanager -->
+<Fragment set:html={`${gtmScript}`} />
 <!-- Einde Global site tag - Google Tagmanager -->
