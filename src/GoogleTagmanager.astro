@@ -4,27 +4,38 @@ export interface Props {
   id: string;
   partytown?: boolean;
   domain?: string;
+  container?: string;
 }
 
-const { id = 'GTM_MEASUREMENT_ID', partytown = false, domain = 'https://www.googletagmanager.com' } = Astro.props;
+const {
+  id = "GTM_MEASUREMENT_ID",
+  partytown = false,
+  domain = "https://www.googletagmanager.com",
+  container = "gtm.js",
+} = Astro.props;
 
-const attrs = partytown ? { type: 'text/partytown' } :  {};
-const _attrs = partytown ? ' type="text/partytown"' :  '';
+const attrs = partytown ? { type: "text/partytown" } : {};
+const _attrs = partytown ? ' type="text/partytown"' : "";
 
-const gtmScript = '<script' + _attrs + '>' + `
+const gtmScript = `
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '${domain}/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer', '${id}');</script>
-	`;
+    '${domain}/${container}?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','${id}');
+`;
 ---
 
-<!-- Global site tag (gtm.js) - Google Tagmanager -->
-{ id && (
-  <script is:inline async src={`${domain}/gtm.js?id=${id}`} {...attrs}></script>
-)}
+<!-- Global site tag - Google Tagmanager -->{
+  id && (
+    <script
+      is:inline
+      async
+      src={`${domain}/${container}?id=${id}`}
+      {...attrs}
+    />
+  )
+}
 
-<Fragment set:html={gtmScript} />
-
-<!-- Einde Global site tag (gtm.js) - Google Tagmanager -->
+<Fragment set:html={`<script${_attrs}>${gtmScript}</script>`} />
+<!-- Einde Global site tag - Google Tagmanager -->
