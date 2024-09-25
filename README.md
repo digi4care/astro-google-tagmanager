@@ -30,7 +30,7 @@ import { GoogleTagmanager, GoogleTagmanagerNoscript, SiteVerification } from '@d
 <html lang="en" dir="ltr">
   <head>
     <SiteVerification id="GTM_VERIFICATION_ID" />
-    <GoogleTagmanager id="GTM_MEASUREMENT_ID" partytown={false} domain="https://www.some-custom-domain-is-also-supported.com" />
+    <GoogleTagmanager id="GTM_MEASUREMENT_ID" partytown={false} domain="https://www.some-custom-domain-is-also-supported.com" container="custom-container-path-is-also-supported.js" />
   </head>
 
   <body>
@@ -42,7 +42,7 @@ import { GoogleTagmanager, GoogleTagmanagerNoscript, SiteVerification } from '@d
 
 ### Notes
 
-- **GoogleTagmanager Component**: This component injects the Google Tag Manager script into your Astro project. Pass your GTM measurement ID as the `id` prop. If you need to support a custom domain, use the `domain` prop.
+- **GoogleTagmanager Component**: This component injects the Google Tag Manager script into your Astro project. Pass your GTM measurement ID as the `id` prop. If needed, you can specify a custom domain using the domain prop and a custom container path using the container prop.
 - **GoogleTagmanagerNoscript Component**: This component provides a no-script fallback for Google Tag Manager. Note that there is no `partytown` support for this component.
 - **SiteVerification Component**: Use this component to add site verification meta tags. Pass your verification ID as the `id` prop. You can also specify the `name` prop to use different site verification names for various vendors.
 
@@ -57,6 +57,7 @@ Be aware that the `GoogleTagmanagerNoscript` component does not support `partyto
 - **id** (string): Your GTM measurement ID.
 - **partytown** (boolean): Enable or disable partytown. Default is `false`.
 - **domain** (string): Custom domain for the Google Tag Manager script. Default is `https://www.googletagmanager.com`.
+- **container** (string): Custom container path for the Google Tag Manager script. Default is `gtm.js`.
 
 ### GoogleTagmanagerNoscript
 
