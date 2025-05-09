@@ -13,42 +13,30 @@ const {
 } = Astro.props;
 
 const gtmScript = `<script>
-    // Initialize dataLayer if not exists
+    // Initialize dataLayer
     window.dataLayer = window.dataLayer || [];
 
-    // Initialize GTM
-    function initGTM() {
-      try {
-        // Push page transition event
-        window.dataLayer.push({
-          'gtm.start': new Date().getTime(),
-          'event': '${container}',
-          'newPage': true
-        });
+    // Standard GTM initialization
+    (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'${container}'});
+        var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;j.src='${domain}/${container}?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','${id}');
 
-        // Remove existing GTM script if present
-        const existingScript = document.querySelector('script[src*="googletagmanager.com"]');
-        if (existingScript) {
-          existingScript.remove();
-        }
-
-        // Create and inject new GTM script
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = '${domain}/${container}?id=${id}';
-        document.head.appendChild(script);
-      } catch (error) {
-        console.error('Error initializing GTM:', error);
-      }
-    }
-
-    // Initialize on first load
-    initGTM();
-
-    // Handle View Transitions
+    // Additional handling for View Transitions
     document.addEventListener('astro:after-swap', function() {
-      // Preserve existing dataLayer data but mark new page load
-      initGTM();
+        try {
+            // Push virtual pageview for new page
+            window.dataLayer.push({
+                'event': 'virtualPageview',
+                'virtualPagePath': window.location.pathname,
+                'virtualPageTitle': document.title
+            });
+        } catch (error) {
+            console.error('Error handling View Transition in GTM:', error);
+        }
     });
 </script>`;
 ---
