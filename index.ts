@@ -4,3 +4,4 @@
 export { default as GoogleTagmanager } from './src/GoogleTagmanager.astro';
 export { default as GoogleTagmanagerPartytown } from './src/GoogleTagmanagerPartytown.astro';
 export { default as GoogleTagmanagerNoscript } from './src/GoogleTagmanagerNoscript.astro';
+export { default as SiteVerification } from './src/SiteVerification.astro';
