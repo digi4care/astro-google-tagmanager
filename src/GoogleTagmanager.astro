@@ -13,35 +13,41 @@ const {
 } = Astro.props;
 
 const gtmScript = `<script>
-    // Clean up existing GTM instance and dataLayer
+    // Initialize dataLayer if not exists
     window.dataLayer = window.dataLayer || [];
 
     // Initialize GTM
     function initGTM() {
-      window.dataLayer.push({
-        'gtm.start': new Date().getTime(),
-        'event': '${container}'
-      });
+      try {
+        // Push page transition event
+        window.dataLayer.push({
+          'gtm.start': new Date().getTime(),
+          'event': '${container}',
+          'newPage': true
+        });
 
-      const existingScript = document.querySelector('script[src*="googletagmanager.com"]');
-      if (existingScript) {
-        existingScript.remove();
+        // Remove existing GTM script if present
+        const existingScript = document.querySelector('script[src*="googletagmanager.com"]');
+        if (existingScript) {
+          existingScript.remove();
+        }
+
+        // Create and inject new GTM script
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = '${domain}/${container}?id=${id}';
+        document.head.appendChild(script);
+      } catch (error) {
+        console.error('Error initializing GTM:', error);
       }
-
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = '${domain}/${container}?id=${id}';
-      document.head.appendChild(script);
     }
 
     // Initialize on first load
     initGTM();
 
-    // Re-initialize on View Transitions
+    // Handle View Transitions
     document.addEventListener('astro:after-swap', function() {
-      // Clean up old dataLayer
-      window.dataLayer = [];
-      // Re-initialize GTM
+      // Preserve existing dataLayer data but mark new page load
       initGTM();
     });
 </script>`;
