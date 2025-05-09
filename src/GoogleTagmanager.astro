@@ -13,12 +13,38 @@ const {
 } = Astro.props;
 
 const gtmScript = `<script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'${container}'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '${domain}/${container}?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','${id}');</script>
-`;
+    // Clean up existing GTM instance and dataLayer
+    window.dataLayer = window.dataLayer || [];
+
+    // Initialize GTM
+    function initGTM() {
+      window.dataLayer.push({
+        'gtm.start': new Date().getTime(),
+        'event': '${container}'
+      });
+
+      const existingScript = document.querySelector('script[src*="googletagmanager.com"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = '${domain}/${container}?id=${id}';
+      document.head.appendChild(script);
+    }
+
+    // Initialize on first load
+    initGTM();
+
+    // Re-initialize on View Transitions
+    document.addEventListener('astro:after-swap', function() {
+      // Clean up old dataLayer
+      window.dataLayer = [];
+      // Re-initialize GTM
+      initGTM();
+    });
+</script>`;
 ---
 
 <!-- Global site tag - Google Tagmanager -->
