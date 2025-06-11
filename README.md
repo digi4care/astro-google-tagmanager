@@ -86,14 +86,19 @@ import { GoogleTagmanagerPartytown, SiteVerification } from '@digi4care/astro-go
 
 ### GoogleTagmanager
 
-- **id** (string): Your GTM measurement ID.
-- **domain** (string): Custom domain for the Google Tag Manager script. Default is `https://www.googletagmanager.com`.
-- **container** (string): Custom container path for the Google Tag Manager script. Default is `gtm.js`.
+- **id** (string): Your GTM measurement ID (e.g., 'GTM-XXXXXX').
+- **domain** (string): Custom domain for self-hosting the Google Tag Manager container. This is useful for:
+  - Server-side tracking implementations
+  - Complying with data privacy regulations
+  - First-party cookie tracking
+  
+  Default is `https://www.googletagmanager.com`. When self-hosting, set this to your domain where the GTM container is hosted (e.g., `https://analytics.yourdomain.com`).
+- **container** (string): Custom container path for the Google Tag Manager script. Default is `gtm.js`. When self-hosting, this would be the path to your container file.
 
 ### GoogleTagmanagerNoscript
 
-- **id** (string): Your GTM measurement ID.
-- **domain** (string): Custom domain for the Google Tag Manager script. Default is `https://www.googletagmanager.com`.
+- **id** (string): Your GTM measurement ID (e.g., 'GTM-XXXXXX').
+- **domain** (string): Must match the domain used in the `GoogleTagmanager` component. Set this to your custom domain if you're self-hosting the GTM container. Default is `https://www.googletagmanager.com`.
 
 ### GoogleTagmanagerPartytown
 
