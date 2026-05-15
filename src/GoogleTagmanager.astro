@@ -18,7 +18,7 @@ const { id, domain = "https://www.googletagmanager.com", container = "gtm.js" } 
     new Date().getTime(),event:'${container}'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     '${domain}/${container}?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','${id}'});
+    })(window,document,'script','dataLayer','${id}');
 
     // Guard against duplicate listeners on inline script re-execution
     if (!window.__gtm_after_swap_added) {
@@ -27,6 +27,7 @@ const { id, domain = "https://www.googletagmanager.com", container = "gtm.js" } 
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'virtualPageview',
+          'gtm.start': new Date().getTime(),
           virtualPagePath: window.location.pathname,
           virtualPageTitle: document.title
         });
