@@ -5,7 +5,7 @@ export interface Props {
 	domain?: string;
 }
 
-const { id = "GTM_MEASUREMENT_ID", domain = "https://www.googletagmanager.com" } = Astro.props;
+const { id, domain = "https://www.googletagmanager.com" } = Astro.props;
 ---
 
 <!-- Global site tag (gtm.js) - Google Tagmanager NoScript -->{

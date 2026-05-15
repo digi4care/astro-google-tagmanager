@@ -4,7 +4,7 @@ export interface Props {
 	id: string;
 }
 
-const { id = "GTM_MEASUREMENT_ID" } = Astro.props;
+const { id } = Astro.props;
 
 const gtmScript = `
   <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>
