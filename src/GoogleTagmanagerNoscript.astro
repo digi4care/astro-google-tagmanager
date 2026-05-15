@@ -1,14 +1,11 @@
 ---
 // component: src/components/common/GoogleTagmanagerNoscript.astro
 export interface Props {
-  id: string;
-  domain?: string;
+	id: string;
+	domain?: string;
 }
 
-const {
-  id = "GTM_MEASUREMENT_ID",
-  domain = "https://www.googletagmanager.com",
-} = Astro.props;
+const { id = "GTM_MEASUREMENT_ID", domain = "https://www.googletagmanager.com" } = Astro.props;
 ---
 
 <!-- Global site tag (gtm.js) - Google Tagmanager NoScript -->{

@@ -1,51 +1,57 @@
 {
-  "name": "@digi4care/astro-google-tagmanager",
-  "version": "1.6.0",
-  "description": "A seamless integration for injecting Google Tag Manager snippets into Astro projects, supporting popular web analytics tools.",
-  "homepage": "https://github.com/digi4care/astro-google-tagmanager",
-  "bugs": {
-    "url": "https://github.com/digi4care/astro-google-tagmanager/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/digi4care/astro-google-tagmanager.git"
-  },
-  "author": {
-    "name": "digi4care",
-    "email": "contact@digi4care.nl",
-    "url": "https://github.com/digi4care"
-  },
-  "license": "MIT",
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  },
-  "exports": {
-    ".": "./index.ts"
-  },
-  "files": [
-    "src",
-    "index.ts"
-  ],
-  "keywords": [
-    "astro-component",
-    "astro",
-    "analytics",
-    "tagmanager",
-    "google-tagmanager",
-    "gtm",
-    "astro-integration",
-    "web-analytics",
-    "SEO",
-    "website-tracking",
-    "web-analytics-integration"
-  ],
-  "scripts": {},
-  "devDependencies": {
-    "astro": "^1.2.1 || ^2.0.0 || ^3.0.0-beta.0 || ^3.0.0 || ^4.0.0 || ^5.0.0",
-    "typescript": "^4.0.0 || ^5.0.0"
-  },
-  "peerDependencies": {
-    "astro": "^1.2.1 || ^2.0.0 || ^3.0.0-beta.0 || ^3.0.0 || ^4.0.0 || ^5.0.0"
-  }
+	"name": "@digi4care/astro-google-tagmanager",
+	"version": "2.0.0",
+	"description": "Astro 6 components for injecting Google Tag Manager snippets with ViewTransitions support",
+	"homepage": "https://github.com/digi4care/astro-google-tagmanager",
+	"bugs": {
+		"url": "https://github.com/digi4care/astro-google-tagmanager/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/digi4care/astro-google-tagmanager.git"
+	},
+	"author": {
+		"name": "digi4care",
+		"email": "contact@digi4care.nl",
+		"url": "https://github.com/digi4care"
+	},
+	"license": "MIT",
+	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
+	"exports": {
+		".": "./index.ts"
+	},
+	"files": [
+		"src",
+		"index.ts"
+	],
+	"keywords": [
+		"astro-component",
+		"astro",
+		"astro-6",
+		"analytics",
+		"tagmanager",
+		"google-tagmanager",
+		"gtm",
+		"view-transitions",
+		"web-analytics",
+		"SEO",
+		"website-tracking"
+	],
+	"scripts": {
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"check": "biome check .",
+		"check:fix": "biome check --write ."
+	},
+	"devDependencies": {
+		"astro": "^6.3.3",
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.6"
+	},
+	"peerDependencies": {
+		"astro": "^6.0.0"
+	}
 }

@@ -28,4 +28,13 @@ pnpm-debug.log*
 
 # vscode
 .vscode
-package-lock.json
+
+# tooling / planning / local config
+.claude/
+.leankg/
+.omp/
+graphify-out/
+docs/planning/
+AGENTS.md
+.planning-state.json
+.beads/

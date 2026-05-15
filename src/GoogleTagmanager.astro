@@ -1,26 +1,36 @@
 ---
-// component: src/components/common/GoogleTagmanager.astro
 export interface Props {
-  id: string;
-  domain?: string;
-  container?: string;
+	/** GTM container ID (e.g. GTM-XXXXXX) */
+	id: string;
+	/** Custom GTM server domain (server-side only). Default: https://www.googletagmanager.com */
+	domain?: string;
+	/** Custom container path. Default: gtm.js */
+	container?: string;
 }
 
-const {
-  id = "GTM_MEASUREMENT_ID",
-  domain = "https://www.googletagmanager.com",
-  container = "gtm.js",
-} = Astro.props;
+const { id, domain = "https://www.googletagmanager.com", container = "gtm.js" } = Astro.props;
+---
 
-const gtmScript = `<script>
+{id && (
+  <Fragment set:html={`<script>
+    window.dataLayer = window.dataLayer || [];
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'${container}'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     '${domain}/${container}?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','${id}');</script>
-`;
----
+    })(window,document,'script','dataLayer','${id}'});
 
-<!-- Global site tag - Google Tagmanager -->
-<Fragment set:html={`${gtmScript}`} />
-<!-- Einde Global site tag - Google Tagmanager -->
+    // Guard against duplicate listeners on inline script re-execution
+    if (!window.__gtm_after_swap_added) {
+      window.__gtm_after_swap_added = true;
+      document.addEventListener('astro:after-swap', function() {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'virtualPageview',
+          virtualPagePath: window.location.pathname,
+          virtualPageTitle: document.title
+        });
+      });
+    }
+  </script>`} />
+)}
