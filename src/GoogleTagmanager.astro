@@ -9,16 +9,20 @@ export interface Props {
 }
 
 const { id, domain = "https://www.googletagmanager.com", container = "gtm.js" } = Astro.props;
+const jsString = (value: string) => JSON.stringify(value).replace(/</g, "\\u003c");
+const safeId = jsString(id);
+const safeDomain = jsString(domain);
+const safeContainer = jsString(container);
 ---
 
 {id && (
   <Fragment set:html={`<script>
     window.dataLayer = window.dataLayer || [];
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'${container}'});var f=d.getElementsByTagName(s)[0],
+    new Date().getTime(),event:${safeContainer}});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '${domain}/${container}?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','${id}');
+    ${safeDomain}+ '/' + ${safeContainer} + '?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer',${safeId});
 
     // Guard against duplicate listeners on inline script re-execution
     if (!window.__gtm_after_swap_added) {

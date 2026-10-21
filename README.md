@@ -1,6 +1,6 @@
 # @digi4care/astro-google-tagmanager
 
-Astro components for injecting Google Tag Manager (GTM) snippets with built-in **View Transitions / ClientRouter** support. Compatible with **Astro 6+**.
+Astro components for injecting Google Tag Manager (GTM) snippets with built-in **View Transitions / ClientRouter** support. Compatible with **Astro 6 and 7**.
 
 ## Installation
 

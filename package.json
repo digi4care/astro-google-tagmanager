@@ -1,7 +1,7 @@
 {
 	"name": "@digi4care/astro-google-tagmanager",
-	"version": "2.0.0",
-	"description": "Astro 6 components for injecting Google Tag Manager snippets with ViewTransitions support",
+	"version": "2.1.0",
+	"description": "Astro 6 and 7 components for injecting Google Tag Manager snippets with ViewTransitions support",
 	"homepage": "https://github.com/digi4care/astro-google-tagmanager",
 	"bugs": {
 		"url": "https://github.com/digi4care/astro-google-tagmanager/issues"
@@ -31,6 +31,7 @@
 		"astro-component",
 		"astro",
 		"astro-6",
+		"astro-7",
 		"analytics",
 		"tagmanager",
 		"google-tagmanager",
@@ -47,12 +48,12 @@
 		"check:fix": "biome check --write ."
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.15",
-		"astro": "^6.3.3",
-		"typescript": "^6.0.3",
-		"vitest": "^4.1.6"
+		"@biomejs/biome": "^2.5.15",
+		"astro": "^7.3.8",
+		"typescript": "^7.0.2",
+		"vitest": "^5.0.4"
 	},
 	"peerDependencies": {
-		"astro": "^6.0.0"
+		"astro": "^6.0.0 || ^7.0.0"
 	}
 }

@@ -1,3 +1,4 @@
+2.1.0 - 2026-10-21 - feat: add Astro 7 support; update development dependencies; safely serialize dynamic GTM props in script output
 2025-05-09 - feat: add SiteVerification component export and bump version to 1.6.0
 2025-05-09 - chore: add comprehensive gitignore and npmignore files for astro-google-tagmanager package
 2025-05-09 - feat: add Astro 5.0 support and update TypeScript version compatibility

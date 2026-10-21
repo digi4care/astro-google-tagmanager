@@ -5,15 +5,16 @@ export interface Props {
 }
 
 const { id } = Astro.props;
+const safeId = JSON.stringify(id).replace(/</g, "\\u003c");
 
 const gtmScript = `
-  <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>
+  <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}"></script>
   <script type="text/partytown">
     window.dataLayer = window.dataLayer || [];
     window.gtag = function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', '${id}');
+    gtag('config', ${safeId});
   </script>
 `;
 ---
